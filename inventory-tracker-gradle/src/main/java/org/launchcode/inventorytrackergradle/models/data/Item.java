@@ -46,7 +46,7 @@ public class Item extends AbstractEntity{
         return numberInInventory;
     }
 
-    public void setNumberInInventory(double numberInInventory) {
+    public void setNumberInInventory(int numberInInventory) {
         this.numberInInventory = numberInInventory;
     }
 
@@ -54,7 +54,7 @@ public class Item extends AbstractEntity{
         return numberMinimumToKeepOnHand;
     }
 
-    public void setNumberMinimumToKeepOnHand(double numberMinimumToKeepOnHand) {
+    public void setNumberMinimumToKeepOnHand(int numberMinimumToKeepOnHand) {
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
 }
