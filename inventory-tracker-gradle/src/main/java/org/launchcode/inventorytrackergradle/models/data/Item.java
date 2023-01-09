@@ -11,14 +11,14 @@ public class Item extends AbstractEntity{
 
         private String description;
 
-        private double numberInInventory;
+        private int numberInInventory;
 
-        private double numberMinimumToKeepOnHand;
+        private int numberMinimumToKeepOnHand;
 
         public Item() {
         }
 
-    public Item(Manufacturer manufacturer, String description, double numberInInventory, double numberMinimumToKeepOnHand){
+    public Item(Manufacturer manufacturer, String description, int numberInInventory, int numberMinimumToKeepOnHand){
         super();
         this.manufacturer = manufacturer;
         this.description = description;
@@ -42,7 +42,7 @@ public class Item extends AbstractEntity{
         this.description = description;
     }
 
-    public double getNumberInInventory() {
+    public int getNumberInInventory() {
         return numberInInventory;
     }
 
@@ -50,7 +50,7 @@ public class Item extends AbstractEntity{
         this.numberInInventory = numberInInventory;
     }
 
-    public double getNumberMinimumToKeepOnHand() {
+    public int getNumberMinimumToKeepOnHand() {
         return numberMinimumToKeepOnHand;
     }
 
