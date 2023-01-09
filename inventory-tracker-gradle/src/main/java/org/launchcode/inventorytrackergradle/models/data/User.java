@@ -1,4 +1,4 @@
-package org.launchcode.inventorytrackergradle.models;
+package org.launchcode.inventorytrackergradle.models.data;
 
 
 import org.launchcode.inventorytrackergradle.models.data.AbstractEntity;
