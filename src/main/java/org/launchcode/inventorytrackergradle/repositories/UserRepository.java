@@ -1,4 +1,4 @@
-package main.java.org.launchcode.inventorytrackergradle.repositories;
+package org.launchcode.inventorytrackergradle.repositories;
 
 import org.launchcode.inventorytrackergradle.models.User;
 import org.springframework.data.repository.CrudRepository;
