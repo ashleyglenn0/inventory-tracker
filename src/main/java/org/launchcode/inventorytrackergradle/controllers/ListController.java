@@ -23,7 +23,7 @@ public class ListController {
     private ManufacturerRepository manufacturerRepository;
 
     @RequestMapping(value = "items")
-    public Iterable<Item> listJobsByColumnAndValue(@RequestParam String column, @RequestParam String value) {
+    public Iterable<Item> listItemsByColumnAndValue(@RequestParam String column, @RequestParam String value) {
         Iterable<Item> items;
         if (column.toLowerCase().equals("all")) {
             items = itemRepository.findAll();
