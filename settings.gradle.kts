@@ -1,1 +1,1 @@
-rootProject.name = "inventory-tracker-gradle"
+rootProject.name = "inventory-tracker"
