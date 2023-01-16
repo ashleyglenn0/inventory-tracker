@@ -1,22 +1,27 @@
 package org.launchcode.inventorytrackergradle.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Item extends AbstractEntity{
 
-        @ManyToOne
-        private Manufacturer manufacturer;
 
-        private String description;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
 
-        private int numberInInventory;
+    private String description;
 
-        private int numberMinimumToKeepOnHand;
+    private int numberInInventory;
 
-        public Item() {
-        }
+    private int numberMinimumToKeepOnHand;
+
+    public Item() {
+    }
 
     public Item(Manufacturer manufacturer, String description, int numberInInventory, int numberMinimumToKeepOnHand){
         super();
@@ -26,6 +31,7 @@ public class Item extends AbstractEntity{
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
 
+    @JsonBackReference
     public Manufacturer getManufacturer() {
         return manufacturer;
     }
