@@ -1,5 +1,7 @@
 package org.launchcode.inventorytrackergradle.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -13,8 +15,7 @@ public class Manufacturer extends AbstractEntity{
 
     private String phoneNumber;
 
-    @OneToMany
-    @JoinColumn(name = "manufacturer_id")
+    @OneToMany(mappedBy = "manufacturer")
     private final List<Item> items = new ArrayList<>();
 
     public Manufacturer() {
@@ -42,6 +43,7 @@ public class Manufacturer extends AbstractEntity{
         this.phoneNumber = phoneNumber;
     }
 
+    @JsonManagedReference
     public List<Item> getItems() {
         return items;
     }

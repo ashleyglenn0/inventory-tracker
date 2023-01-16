@@ -2,7 +2,7 @@ package org.launchcode.inventorytrackergradle.controllers;
 
 import org.launchcode.inventorytrackergradle.models.Item;
 import org.launchcode.inventorytrackergradle.models.ItemData;
-import org.launchcode.inventorytrackergradle.repositories.ItemRepository;
+import org.launchcode.inventorytrackergradle.models.data.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

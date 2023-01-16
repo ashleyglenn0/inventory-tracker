@@ -1,2 +1,3 @@
-package org.launchcode.inventorytrackergradle.controllers;public class ManufacturerController {
+package org.launchcode.inventorytrackergradle.controllers;
+public class ManufacturerController {
 }
