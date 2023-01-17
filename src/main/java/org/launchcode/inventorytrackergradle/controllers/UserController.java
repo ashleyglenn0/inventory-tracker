@@ -16,6 +16,7 @@ public class UserController {
 
     @GetMapping("populate")
     String populateDatabase(){
+
         User user = new User("NewUser1", "mail@email.com", "1234567", "1234", "1234");
         userRepository.save(user);
         User user2 = new User("NewUser2", "mail2@email.com", "89101112", "5678","5678");
@@ -24,6 +25,7 @@ public class UserController {
         userRepository.save(user3);
         return "ok";
     }
+
     @GetMapping("")
     public Iterable<User> getUsers (){
         return  userRepository.findAll();
