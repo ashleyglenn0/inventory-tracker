@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 @Entity
 public class User extends AbstractEntity {
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @NotNull
     @NotBlank(message="User name is required")
@@ -29,23 +29,25 @@ public class User extends AbstractEntity {
     private String phoneNumber;
 
     @NotNull
-    private String pwHash;
+    private String password;
 
-
+    @NotNull
+    private String confirmPassword;
 
     public User() {}
     // Need to work on how I can make sure that the user can enter either email or username
-    public User(String username, String password) {
-        this.username = username;
-        this.pwHash = encoder.encode(password);
-    }
+//    public User(String username, String password) {
+//        this.username = username;
+//        this.pwHash = encoder.encode(password);
+//    }
 
 
-    public User(String username, String email, String phoneNumber, String password) {
+    public User(String username, String email, String phoneNumber, String password, String confirmPassword) {
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.pwHash = encoder.encode(password);
+        this.password = password;
+        this.confirmPassword = confirmPassword;
 
 
     }
@@ -74,17 +76,24 @@ public class User extends AbstractEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPwHash() {
-        return pwHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwHash(String pwHash) {
-        this.pwHash = pwHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public boolean isMatchingPassword(String password) {
-        return encoder.matches(password, pwHash);
+//    public boolean isMatchingPassword(String password) {
+//        return encoder.matches(password, pwHash);
+//    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }
 
