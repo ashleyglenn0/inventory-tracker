@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 @Entity
 public class User extends AbstractEntity {
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @NotNull
     @NotBlank(message="User name is required")
@@ -34,15 +34,16 @@ public class User extends AbstractEntity {
     @NotNull
     private String confirmPassword;
 
-
+    @NotNull
+    private String confirmPassword;
 
     public User() {}
     // Need to work on how I can make sure that the user can enter either email or username
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
 
     public User(String username, String email, String phoneNumber, String password, String confirmPassword) {
         this.username = username;
@@ -85,6 +86,10 @@ public class User extends AbstractEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    public boolean isMatchingPassword(String password) {
+//        return encoder.matches(password, pwHash);
+//    }
 
     public String getConfirmPassword() {
         return confirmPassword;
