@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("users")
 public class UserController {
 
@@ -19,10 +19,10 @@ public class UserController {
         return  userRepository.findAll();
     }
 
-    @PostMapping("")
+    @PostMapping("add")
     void addUser(@RequestBody User user) {
         User userToBeAdded = new User(user.getUsername(), user.getEmail(), user.getPhoneNumber(),
-                user.getPwHash());
+                user.getPassword(), user.getConfirmPassword());
         userRepository.save(userToBeAdded);
     }
 }
