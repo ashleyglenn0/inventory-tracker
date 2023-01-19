@@ -31,7 +31,7 @@ public class UserController {
         return  userRepository.findAll();
     }
 
-    @PostMapping("")
+    @PostMapping("add")
     void addUser(@RequestBody User user) {
         User userToBeAdded = new User(user.getUsername(), user.getEmail(), user.getPhoneNumber(),
                 user.getPassword(), user.getConfirmPassword());

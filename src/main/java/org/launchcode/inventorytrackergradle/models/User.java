@@ -34,13 +34,16 @@ public class User extends AbstractEntity {
     @NotNull
     private String confirmPassword;
 
+    @NotNull
+    private String confirmPassword;
+
     public User() {}
     // Need to work on how I can make sure that the user can enter either email or username
-//    public User(String username, String password) {
-//        this.username = username;
-//        this.pwHash = encoder.encode(password);
-//    }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public User(String username, String email, String phoneNumber, String password, String confirmPassword) {
         this.username = username;
