@@ -34,9 +34,6 @@ public class User extends AbstractEntity {
     @NotNull
     private String confirmPassword;
 
-    @NotNull
-    private String confirmPassword;
-
     public User() {}
     // Need to work on how I can make sure that the user can enter either email or username
 
