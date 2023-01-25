@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("manufacturers")
 public class ManufacturerController {
     @Autowired
@@ -17,7 +17,7 @@ public class ManufacturerController {
         return manufacturerRepository.findAll();
     }
 
-    @PostMapping("")
+    @PostMapping("add")
     void addManufacturer(@RequestBody Manufacturer manufacturer) {
         Manufacturer manufacturerToBeAdded = new Manufacturer(manufacturer.getAddress(), manufacturer.getPhoneNumber());
         manufacturerRepository.save(manufacturerToBeAdded);
