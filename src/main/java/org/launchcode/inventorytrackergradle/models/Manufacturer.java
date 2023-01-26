@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 public class Manufacturer extends AbstractEntity{
 
+    private String name;
     private String address;
 
     private String phoneNumber;
@@ -21,10 +22,19 @@ public class Manufacturer extends AbstractEntity{
     public Manufacturer() {
     }
 
-    public Manufacturer(String address, String phoneNumber) {
+    public Manufacturer(String name, String address, String phoneNumber) {
         super();
+        this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {

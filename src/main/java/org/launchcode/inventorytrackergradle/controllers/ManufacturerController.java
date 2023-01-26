@@ -19,7 +19,7 @@ public class ManufacturerController {
 
     @PostMapping("add")
     void addManufacturer(@RequestBody Manufacturer manufacturer) {
-        Manufacturer manufacturerToBeAdded = new Manufacturer(manufacturer.getAddress(), manufacturer.getPhoneNumber());
+        Manufacturer manufacturerToBeAdded = new Manufacturer(manufacturer.getName(), manufacturer.getAddress(), manufacturer.getPhoneNumber());
         manufacturerRepository.save(manufacturerToBeAdded);
     }
 }
