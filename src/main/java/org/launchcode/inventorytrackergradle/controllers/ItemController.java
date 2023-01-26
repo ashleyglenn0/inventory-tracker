@@ -19,7 +19,7 @@ public class ItemController {
     @PostMapping("add")
     void addItem(@RequestBody Item item) {
         Item itemToBeAdded = new Item(item.getManufacturer(), item.getName(), item.getDescription(),
-                item.getNumberInInventory(), item.getNumberMinimumToKeepOnHand());
+                item.getCategory(), item.getNumberInInventory(), item.getNumberMinimumToKeepOnHand());
         itemRepository.save(itemToBeAdded);
     }
 }
