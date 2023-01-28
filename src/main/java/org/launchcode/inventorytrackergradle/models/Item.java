@@ -27,6 +27,8 @@ public class Item extends AbstractEntity{
     @Size(max=250)
     private String description;
 
+    private String category;
+
     private int numberInInventory;
 
     private int numberMinimumToKeepOnHand;
@@ -34,11 +36,12 @@ public class Item extends AbstractEntity{
     public Item() {
     }
 
-    public Item(Manufacturer manufacturer, String name, String description, int numberInInventory, int numberMinimumToKeepOnHand){
+    public Item(Manufacturer manufacturer, String name, String description, String category, int numberInInventory, int numberMinimumToKeepOnHand){
         super();
         this.manufacturer = manufacturer;
         this.name = name;
         this.description = description;
+        this.category = category;
         this.numberInInventory = numberInInventory;
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
@@ -67,6 +70,10 @@ public class Item extends AbstractEntity{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getCategory() {return category;}
+
+    public void setCategory(String category) {this.category = category;}
 
     public int getNumberInInventory() {
         return numberInInventory;
