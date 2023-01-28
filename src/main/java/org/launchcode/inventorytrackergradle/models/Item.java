@@ -43,6 +43,14 @@ public class Item extends AbstractEntity{
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
 
+    public boolean aboveMinAmount(){
+      if (this.numberInInventory >= this.numberMinimumToKeepOnHand){
+          return true;
+      } else {
+          return false;
+      }
+    }
+
     @JsonBackReference
     public Manufacturer getManufacturer() {
         return manufacturer;
