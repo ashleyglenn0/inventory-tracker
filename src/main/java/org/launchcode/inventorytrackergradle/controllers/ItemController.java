@@ -31,7 +31,13 @@ public class ItemController {
         return itemRepository.findByBelowMinAmountTrue();
     }
 
+    @GetMapping("id/{id}")
+    public Optional<Item> findById (@PathVariable int id){
+        return itemRepository.findById(id);
+    }
 
-
-
+    @DeleteMapping("{id}")
+    void deleteItem (@PathVariable int id){
+        itemRepository.deleteById(id);
+    }
 }
