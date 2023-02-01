@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,11 +32,15 @@ public class ItemController {
         itemRepository.save(itemToBeAdded);
     }
 
+    @GetMapping("dashboard/toOrder")
+    public List<Item> getItemsToOrder(){
+        return itemRepository.findByBelowMinAmountTrue();
+    }
+
     @GetMapping("id/{id}")
     public Optional<Item> findById (@PathVariable int id){
         return itemRepository.findById(id);
     }
-
 
     @DeleteMapping("{id}")
     void deleteItem (@PathVariable int id){

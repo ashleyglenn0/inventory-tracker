@@ -12,31 +12,27 @@ import javax.validation.constraints.Size;
 @Entity
 public class Item extends AbstractEntity{
 
-
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
-
     @NotNull
     @NotBlank
     @Size(max=75)
     private String name;
-
     @NotNull
     @NotBlank
     @Size(max=250)
     private String description;
-
     private String category;
-
     private int numberInInventory;
-
     private int numberMinimumToKeepOnHand;
+    private boolean belowMinAmount = (numberInInventory <= numberMinimumToKeepOnHand);
 
     public Item() {
     }
 
-    public Item(Manufacturer manufacturer, String name, String description, String category, int numberInInventory, int numberMinimumToKeepOnHand){
+    public Item(Manufacturer manufacturer, String name, String description, String category, int numberInInventory,
+                int numberMinimumToKeepOnHand){
         super();
         this.manufacturer = manufacturer;
         this.name = name;
@@ -44,14 +40,6 @@ public class Item extends AbstractEntity{
         this.category = category;
         this.numberInInventory = numberInInventory;
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
-    }
-
-    public boolean aboveMinAmount(){
-      if (this.numberInInventory >= this.numberMinimumToKeepOnHand){
-          return true;
-      } else {
-          return false;
-      }
     }
 
     @JsonBackReference
@@ -97,5 +85,12 @@ public class Item extends AbstractEntity{
 
     public void setNumberMinimumToKeepOnHand(int numberMinimumToKeepOnHand) {
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
+    }
+    public boolean isBelowMinAmount() {
+        return belowMinAmount;
+    }
+
+    public void setBelowMinAmount(boolean belowMinAmount) {
+        this.belowMinAmount = belowMinAmount;
     }
 }
