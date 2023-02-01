@@ -2,6 +2,7 @@ package org.launchcode.inventorytrackergradle.controllers;
 import org.launchcode.inventorytrackergradle.models.data.UserRepository;
 import org.launchcode.inventorytrackergradle.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,8 +24,9 @@ public class UserController {
 
     @PostMapping("add")
     void addUser(@RequestBody User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         User userToBeAdded = new User(user.getUsername(), user.getEmail(), user.getPhoneNumber(),
-                user.getPassword(), user.getConfirmPassword());
+                encoder.encode(user.getPassword()));
         userRepository.save(userToBeAdded);
     }
 
@@ -32,11 +34,11 @@ public class UserController {
     public boolean authenticate (@RequestBody User user) {
 
         Optional<User> userData = userRepository.findByUsername(user.getUsername());
-
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         if (userData.isPresent()) {
             User userInfo = userData.get();
-            if (user.getPassword().matches(userInfo.getPassword())) {
+            if (encoder.matches(user.getPassword(), userInfo.getPassword())) {
                 System.out.println("it's a match!");
                 return true;
             } else {
