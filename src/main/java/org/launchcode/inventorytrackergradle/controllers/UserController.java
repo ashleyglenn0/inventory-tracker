@@ -68,7 +68,7 @@ public class UserController {
     public boolean checkForDuplicateUsername(@PathVariable String username){
         Iterable <User> users = getUsers();
         for(User user : users){
-            if(username.equals(user.getUsername())){
+            if(username.equalsIgnoreCase(user.getUsername())){
                 return false;
             }
             }
