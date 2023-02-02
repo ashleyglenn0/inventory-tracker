@@ -24,7 +24,6 @@ public class ItemData {
                 results.add(item);
             }
         }
-
         return results;
     }
 
@@ -33,11 +32,16 @@ public class ItemData {
         if (fieldName.equals("name")){
             theValue = item.getName();
         } else if (fieldName.equals("manufacturer")){
-            theValue = item.getManufacturer().toString();
+            Manufacturer manufacturer = item.getManufacturer();
+            theValue = manufacturer.getName();
+        } else if (fieldName.equals("description")){
+            theValue = item.getDescription();
+        } else if (fieldName.equals("category")) {
+            theValue = item.getCategory();
         } else {
-            theValue = item.getDescription().toString();
+            theValue = "Invalid field name! Backend only set up to search by name, manufacturer, description, or category. ItemData, line 41.";
+            System.out.println(theValue);
         }
-
         return theValue;
     }
 

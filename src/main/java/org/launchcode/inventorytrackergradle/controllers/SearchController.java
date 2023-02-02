@@ -4,28 +4,25 @@ import org.launchcode.inventorytrackergradle.models.Item;
 import org.launchcode.inventorytrackergradle.models.ItemData;
 import org.launchcode.inventorytrackergradle.models.data.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("search")
 public class SearchController {
     @Autowired
     private ItemRepository itemRepository;
 
     @PostMapping("results")
-    public Iterable<Item> displaySearchResults(@RequestParam String searchType, @RequestParam String searchTerm){
+    public Iterable<Item> displaySearchResults(@RequestParam String searchType,
+                                               @RequestParam String searchTerm){
         Iterable<Item> items;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             items = itemRepository.findAll();
         } else {
-            items = ItemData.findByColumnAndValue(searchType, searchTerm, itemRepository.findAll());
+            items = ItemData.findByColumnAndValue(searchType, searchTerm,
+                    itemRepository.findAll());
         }
-
-
         return items;
     }
 }
