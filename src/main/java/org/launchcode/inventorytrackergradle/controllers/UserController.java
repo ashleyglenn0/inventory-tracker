@@ -63,4 +63,16 @@ public class UserController {
     void deleteUser (@PathVariable int id){
         userRepository.deleteById(id);
     }
-}
+
+    @GetMapping("check/{username}")
+    public boolean checkForDuplicateUsername(@PathVariable String username){
+        Iterable <User> users = getUsers();
+        for(User user : users){
+            if(username.equalsIgnoreCase(user.getUsername())){
+                return false;
+            }
+            }
+        return true;
+        }
+    }
+
