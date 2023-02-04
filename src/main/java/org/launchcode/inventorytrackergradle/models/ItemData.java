@@ -52,13 +52,15 @@ public class ItemData {
 
         for (Item item : allItems) {
 
+            Manufacturer manufacturer = item.getManufacturer();
+
             if (item.getName().toLowerCase().contains(lower_val)) {
                 results.add(item);
-            } else if (item.getManufacturer().toString().toLowerCase().contains(lower_val)) {
+            } else if (manufacturer.getName().toString().toLowerCase().contains(lower_val)) {
                 results.add(item);
             } else if (item.getDescription().toString().toLowerCase().contains(lower_val)) {
                 results.add(item);
-            } else if (item.toString().toLowerCase().contains(lower_val)) {
+            } else if (item.getCategory().toString().toLowerCase().contains(lower_val)) {
                 results.add(item);
             }
 

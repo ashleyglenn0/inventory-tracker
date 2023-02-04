@@ -14,14 +14,12 @@ public class SearchController {
     private ItemRepository itemRepository;
 
     @PostMapping("results")
-    public Iterable<Item> displaySearchResults(@RequestParam String searchType,
-                                               @RequestParam String searchTerm){
+    public Iterable<Item> displaySearchResults(@RequestParam String searchTerm){
         Iterable<Item> items;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             items = itemRepository.findAll();
         } else {
-            items = ItemData.findByColumnAndValue(searchType, searchTerm,
-                    itemRepository.findAll());
+            items = ItemData.findByValue(searchTerm, itemRepository.findAll());
         }
         return items;
     }
