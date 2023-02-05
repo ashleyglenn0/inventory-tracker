@@ -1,6 +1,7 @@
 package org.launchcode.inventorytrackergradle.controllers;
 
 import org.launchcode.inventorytrackergradle.models.Item;
+import org.launchcode.inventorytrackergradle.models.Manufacturer;
 import org.launchcode.inventorytrackergradle.models.data.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,14 @@ public class ItemController {
     }
 
     @GetMapping("")
-    public Iterable<Item> getItems() {return itemRepository.findAll(); }
+    public Iterable<Item> getItems() {
+        Iterable<Item> items = itemRepository.findAll();
+        for (Item item : items) {
+
+            Manufacturer manufacturer = item.getManufacturer();
+            item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
+    }
+        return items; }
 
     @PostMapping("add")
     void addItem(@RequestBody Item item) {
