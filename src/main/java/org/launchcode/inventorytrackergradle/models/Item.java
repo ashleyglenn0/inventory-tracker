@@ -28,6 +28,8 @@ public class Item extends AbstractEntity{
     private int numberMinimumToKeepOnHand;
     private boolean belowMinAmount = (numberInInventory <= numberMinimumToKeepOnHand);
 
+    private String manufacturerPhoneNumber;
+
     public Item() {
     }
 
@@ -92,5 +94,13 @@ public class Item extends AbstractEntity{
 
     public void setBelowMinAmount(boolean belowMinAmount) {
         this.belowMinAmount = belowMinAmount;
+    }
+
+    public String getManufacturerPhoneNumber() {
+        return manufacturerPhoneNumber;
+    }
+
+    public void setManufacturerPhoneNumber(String manufacturerPhoneNumber) {
+        this.manufacturerPhoneNumber = manufacturerPhoneNumber;
     }
 }
