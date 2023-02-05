@@ -42,7 +42,7 @@ public class ItemController {
 
     @GetMapping("dashboard/toOrder")
     public List<Item> getItemsToOrder(){
-        return itemRepository.findByBelowMinAmountTrue();
+        return itemRepository.findByIsBelowMinAmountTrue();
     }
 
     @GetMapping("id/{id}")

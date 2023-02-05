@@ -26,9 +26,10 @@ public class Item extends AbstractEntity{
     private String category;
     private int numberInInventory;
     private int numberMinimumToKeepOnHand;
-    private boolean belowMinAmount = (numberInInventory <= numberMinimumToKeepOnHand);
 
     private String manufacturerPhoneNumber;
+
+    private boolean isBelowMinAmount;
 
     public Item() {
     }
@@ -42,6 +43,7 @@ public class Item extends AbstractEntity{
         this.category = category;
         this.numberInInventory = numberInInventory;
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
+        this.isBelowMinAmount(numberInInventory, numberMinimumToKeepOnHand);
     }
 
     @JsonBackReference
@@ -88,12 +90,8 @@ public class Item extends AbstractEntity{
     public void setNumberMinimumToKeepOnHand(int numberMinimumToKeepOnHand) {
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
-    public boolean isBelowMinAmount() {
-        return belowMinAmount;
-    }
-
-    public void setBelowMinAmount(boolean belowMinAmount) {
-        this.belowMinAmount = belowMinAmount;
+    public void isBelowMinAmount(int inventoryAmnt, int invMinimum) {
+            this.isBelowMinAmount = (numberInInventory < numberMinimumToKeepOnHand) ? true : false;
     }
 
     public String getManufacturerPhoneNumber() {
