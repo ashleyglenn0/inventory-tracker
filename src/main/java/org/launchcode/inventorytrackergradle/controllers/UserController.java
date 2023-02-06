@@ -18,8 +18,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("")
-    public Iterable<User> getUsers (){
-        return  userRepository.findAll();
+    public Iterable<User> getUsers() {
+        return userRepository.findAll();
     }
 
     @PostMapping("add")
@@ -31,14 +31,14 @@ public class UserController {
     }
 
     @PostMapping("authenticate")
-    public boolean authenticate (@RequestBody User user) {
+    public boolean authenticate(@RequestBody User user) {
 
         Optional<User> userData = userRepository.findByUsername(user.getUsername());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        if (userData.isPresent()) {
+        if ( userData.isPresent() ) {
             User userInfo = userData.get();
-            if (encoder.matches(user.getPassword(), userInfo.getPassword())) {
+            if ( encoder.matches(user.getPassword(), userInfo.getPassword()) ) {
                 System.out.println("it's a match!");
                 return true;
             } else {
@@ -51,8 +51,9 @@ public class UserController {
         }
 
     }
+
     @GetMapping("id/{id}")
-    public Optional <User> findById (@PathVariable int id){
+    public Optional<User> findById(@PathVariable int id) {
 
         return userRepository.findById(id);
 
@@ -60,19 +61,19 @@ public class UserController {
 
 
     @DeleteMapping("{id}")
-    void deleteUser (@PathVariable int id){
+    void deleteUser(@PathVariable int id) {
         userRepository.deleteById(id);
     }
 
     @GetMapping("check/{username}")
-    public boolean checkForDuplicateUsername(@PathVariable String username){
-        Iterable <User> users = getUsers();
-        for(User user : users){
-            if(username.equalsIgnoreCase(user.getUsername())){
-                return false;
+    public boolean usernameExists(@PathVariable String username) {
+        Iterable<User> users = getUsers();
+        for (User user : users) {
+            if ( username.equalsIgnoreCase(user.getUsername()) ) {
+                return true;
             }
-            }
-        return true;
         }
+        return false;
     }
+}
 
