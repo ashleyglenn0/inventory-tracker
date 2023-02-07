@@ -29,6 +29,7 @@ public class ItemController {
 
             Manufacturer manufacturer = item.getManufacturer();
             item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
+            item.setManufacturerName(manufacturer.getName());
     }
         return items; }
 
