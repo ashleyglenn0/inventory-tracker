@@ -1,5 +1,6 @@
 package org.launchcode.inventorytrackergradle.controllers;
 
+import org.launchcode.inventorytrackergradle.models.Item;
 import org.launchcode.inventorytrackergradle.models.Manufacturer;
 import org.launchcode.inventorytrackergradle.models.data.ManufacturerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,19 @@ public class ManufacturerController {
     @DeleteMapping("{id}")
     void deleteUser (@PathVariable int id){
         manufacturerRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    Manufacturer replaceManufacturer(@RequestBody Manufacturer newManufacturer, @PathVariable Integer id){
+        Optional<Manufacturer> manufacturerToReplace = manufacturerRepository.findById(id);
+        if (manufacturerToReplace.isPresent()){
+            Manufacturer manufacturerData =  manufacturerToReplace.get();
+            manufacturerData.setName(newManufacturer.getName());
+            manufacturerData.setAddress(newManufacturer.getAddress());
+            manufacturerData.setPhoneNumber(newManufacturer.getPhoneNumber());
+            return manufacturerRepository.save(manufacturerData);
+        } else {
+            return manufacturerRepository.save(newManufacturer); //may need to update this line - 500 error occurs if invalid id is passed
+        }
     }
 }
