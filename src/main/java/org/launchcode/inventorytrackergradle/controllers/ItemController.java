@@ -41,6 +41,10 @@ public class ItemController {
 
     @GetMapping("dashboard/toOrder")
     public List<Item> getItemsToOrder(){
+        for (Item item : itemRepository.findByIsBelowMinAmountTrue()) {
+            Manufacturer manufacturer = item.getManufacturer();
+            item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
+        }
         return itemRepository.findByIsBelowMinAmountTrue();
     }
 
