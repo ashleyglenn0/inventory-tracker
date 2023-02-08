@@ -90,16 +90,22 @@ public class Item extends AbstractEntity{
     public void setNumberMinimumToKeepOnHand(int numberMinimumToKeepOnHand) {
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
-    public void isBelowMinAmount(int inventoryAmnt, int invMinimum) {
-            this.isBelowMinAmount = (numberInInventory < numberMinimumToKeepOnHand) ? true : false;
+    public boolean isBelowMinAmount(int numberInInventory, int numberMinimumToKeepOnHand) {
+        this.numberInInventory = numberInInventory;
+        this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
+        if (this.numberInInventory < this.numberMinimumToKeepOnHand) {
+                return this.isBelowMinAmount;
+            } else {
+                return !this.isBelowMinAmount;
+            }
     }
 
     public boolean isBelowMinAmount() {
-        return isBelowMinAmount;
+        return this.isBelowMinAmount;
     }
 
     public void setBelowMinAmount(boolean belowMinAmount) {
-        isBelowMinAmount = belowMinAmount;
+        this.isBelowMinAmount = belowMinAmount;
     }
 
     public String getManufacturerPhoneNumber() {
