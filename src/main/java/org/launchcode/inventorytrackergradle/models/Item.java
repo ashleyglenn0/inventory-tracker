@@ -45,11 +45,12 @@ public class Item extends AbstractEntity{
         this.category = category;
         this.numberInInventory = numberInInventory;
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
-        if (this.numberInInventory < this.numberMinimumToKeepOnHand){
-            this.isBelowMinAmount = true;
-        } else {
-            this.isBelowMinAmount = false;
-        }
+//        if (this.numberInInventory < this.numberMinimumToKeepOnHand){
+//            this.isBelowMinAmount = true;
+//        } else {
+//            this.isBelowMinAmount = false;
+//        }
+        this.setBelowMinAmount(this.numberInInventory, this.numberMinimumToKeepOnHand);
     }
 
     @JsonBackReference
