@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,11 +43,15 @@ public class ItemController {
 
     @GetMapping("dashboard/toOrder")
     public List<Item> getItemsToOrder(){
-        for (Item item : itemRepository.findByIsBelowMinAmountTrue()) {
-            Manufacturer manufacturer = item.getManufacturer();
-            item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
+        List<Item> itemsToOrder = new ArrayList<>();
+        for (Item item : getItems()) {
+            if (item.isBelowMinAmount()){
+                Manufacturer manufacturer = item.getManufacturer();
+                item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
+                itemsToOrder.add(item);
+            }
         }
-        return itemRepository.findByIsBelowMinAmountTrue();
+        return itemsToOrder;
     }
 
     @GetMapping("id/{id}")
@@ -70,7 +75,7 @@ public class ItemController {
             itemData.setDescription(newItem.getDescription());
             itemData.setNumberInInventory(newItem.getNumberInInventory());
             itemData.setNumberMinimumToKeepOnHand(newItem.getNumberMinimumToKeepOnHand());
-            itemData.setBelowMinAmount(newItem.isBelowMinAmount());
+            itemData.setBelowMinAmount(newItem.getNumberInInventory(), newItem.getNumberMinimumToKeepOnHand());
             return itemRepository.save(itemData);
         } else {
             return itemRepository.save(newItem); //may need to update this line - 500 error occurs if invalid id is passed
@@ -84,7 +89,7 @@ public class ItemController {
         if (itemToUpdate.isPresent()){
             Item itemData =  itemToUpdate.get();
             itemData.setNumberInInventory(newNumberInInventory);
-            itemData.setBelowMinAmount(itemData.isBelowMinAmount());
+            itemData.setBelowMinAmount(itemData.getNumberInInventory(), itemData.getNumberMinimumToKeepOnHand());
             return new ResponseEntity<Item>(itemRepository.save(itemData), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
