@@ -43,7 +43,11 @@ public class Item extends AbstractEntity{
         this.category = category;
         this.numberInInventory = numberInInventory;
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
-        this.isBelowMinAmount(numberInInventory, numberMinimumToKeepOnHand);
+        if (this.numberInInventory < this.numberMinimumToKeepOnHand){
+            this.isBelowMinAmount = true;
+        } else {
+            this.isBelowMinAmount = false;
+        }
     }
 
     @JsonBackReference
@@ -90,22 +94,26 @@ public class Item extends AbstractEntity{
     public void setNumberMinimumToKeepOnHand(int numberMinimumToKeepOnHand) {
         this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
     }
-    public boolean isBelowMinAmount(int numberInInventory, int numberMinimumToKeepOnHand) {
-        this.numberInInventory = numberInInventory;
-        this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
-        if (this.numberInInventory < this.numberMinimumToKeepOnHand) {
-                return this.isBelowMinAmount;
-            } else {
-                return !this.isBelowMinAmount;
-            }
-    }
+//    public boolean isBelowMinAmount(int numberInInventory, int numberMinimumToKeepOnHand) {
+//        this.numberInInventory = numberInInventory;
+//        this.numberMinimumToKeepOnHand = numberMinimumToKeepOnHand;
+//        if (this.numberInInventory < this.numberMinimumToKeepOnHand) {
+//                return this.isBelowMinAmount;
+//            } else {
+//                return !this.isBelowMinAmount;
+//            }
+//    }
 
     public boolean isBelowMinAmount() {
-        return this.isBelowMinAmount;
+        return isBelowMinAmount;
     }
 
-    public void setBelowMinAmount(boolean belowMinAmount) {
-        this.isBelowMinAmount = belowMinAmount;
+    public void setBelowMinAmount(int numberInInventory, int numberMinimumToKeepOnHand) {
+        if (numberInInventory < numberMinimumToKeepOnHand){
+            this.isBelowMinAmount = true;
+        } else {
+            this.isBelowMinAmount = false;
+        }
     }
 
     public String getManufacturerPhoneNumber() {

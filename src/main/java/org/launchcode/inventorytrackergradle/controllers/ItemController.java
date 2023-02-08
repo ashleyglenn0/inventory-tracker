@@ -49,7 +49,6 @@ public class ItemController {
                 item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
                 itemsToOrder.add(item);
             }
-
         }
         return itemsToOrder;
     }
@@ -75,7 +74,7 @@ public class ItemController {
             itemData.setDescription(newItem.getDescription());
             itemData.setNumberInInventory(newItem.getNumberInInventory());
             itemData.setNumberMinimumToKeepOnHand(newItem.getNumberMinimumToKeepOnHand());
-            itemData.setBelowMinAmount(newItem.isBelowMinAmount(itemData.getNumberInInventory(), itemData.getNumberMinimumToKeepOnHand()));
+            itemData.setBelowMinAmount(newItem.getNumberInInventory(), newItem.getNumberMinimumToKeepOnHand());
             return itemRepository.save(itemData);
         } else {
             return itemRepository.save(newItem); //may need to update this line - 500 error occurs if invalid id is passed
@@ -89,7 +88,7 @@ public class ItemController {
         if (itemToUpdate.isPresent()){
             Item itemData =  itemToUpdate.get();
             itemData.setNumberInInventory(newNumberInInventory);
-            itemData.setBelowMinAmount(itemData.isBelowMinAmount(newNumberInInventory, itemData.getNumberMinimumToKeepOnHand()));
+            itemData.setBelowMinAmount(itemData.getNumberInInventory(), itemData.getNumberMinimumToKeepOnHand());
             return new ResponseEntity<Item>(itemRepository.save(itemData), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
