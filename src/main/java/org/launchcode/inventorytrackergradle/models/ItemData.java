@@ -54,6 +54,7 @@ public class ItemData {
 
             Manufacturer manufacturer = item.getManufacturer();
             item.setManufacturerPhoneNumber(manufacturer.getPhoneNumber());
+            item.setManufacturerName(manufacturer.getName());
 
             if (item.getName().toLowerCase().contains(lower_val)) {
                 results.add(item);

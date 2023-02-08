@@ -29,6 +29,8 @@ public class Item extends AbstractEntity{
 
     private String manufacturerPhoneNumber;
 
+    private String manufacturerName;
+
     private boolean isBelowMinAmount;
 
     public Item() {
@@ -108,5 +110,13 @@ public class Item extends AbstractEntity{
 
     public void setManufacturerPhoneNumber(String manufacturerPhoneNumber) {
         this.manufacturerPhoneNumber = manufacturerPhoneNumber;
+    }
+
+    public String getManufacturerName() {
+        return manufacturerName;
+    }
+
+    public void setManufacturerName(String manufacturerName) {
+        this.manufacturerName = manufacturerName;
     }
 }
